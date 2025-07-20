@@ -249,18 +249,6 @@ user_id = st.sidebar.text_input("User ID", value="user123")
 st.sidebar.header("Session Management")
 
 if selected_app and user_id:
-    # List existing sessions
-    if st.sidebar.button("Load Sessions"):
-        sessions = list_sessions(selected_app, user_id)
-        if sessions:
-            session_options = [f"{s['id']} ({datetime.fromtimestamp(s.get('last_update_time', 0)).strftime('%Y-%m-%d %H:%M')})" 
-                             for s in sessions]
-            selected_session = st.sidebar.selectbox("Existing Sessions", session_options)
-            if selected_session:
-                session_id = selected_session.split(' ')[0]
-                if st.sidebar.button("Load Selected Session"):
-                    load_session(selected_app, user_id, session_id)
-
     # Create new session
     if st.sidebar.button("New Session"):
         session = create_session(selected_app, user_id)
